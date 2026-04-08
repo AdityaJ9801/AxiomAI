@@ -1,317 +1,413 @@
 # AXIOM AI - Agentic Data Analysis Platform
 
-A comprehensive full-stack platform for AI-powered data analysis with a Power BI-like dashboard interface. The platform combines a robust FastAPI backend with a modern Next.js frontend to provide automated data analysis, cleaning, and visualization capabilities.
+A comprehensive, AI-powered data analysis platform with automated insights, quality assessment, and predictive modeling capabilities.
 
-## 🏗️ Project Structure
+## 🎯 Features
 
-```
-AXIOM_AI_V4/
-├── backend/                 # Python FastAPI backend
-│   ├── backend_api.py      # Main API server
-│   ├── agent.py            # AI agent implementation
-│   ├── mcp_tools/          # Analysis and processing tools
-│   ├── tests/              # Backend test suite
-│   ├── sample_datasets/    # Sample data files
-│   ├── uploads/            # File upload storage
-│   ├── exports/            # Report exports
-│   └── requirements.txt    # Python dependencies
-├── frontend/               # Next.js React frontend
-│   ├── app/               # Next.js app directory
-│   │   ├── app/dashboard/ # Power BI-like dashboard
-│   │   ├── app/upload/    # File upload interface
-│   │   ├── app/analysis/  # Analysis pages
-│   │   └── app/quality/   # Data quality interface
-│   └── package.json       # Node.js dependencies
-├── docs/                  # Documentation
-├── docker-compose.yml     # Container orchestration
-└── README.md             # This file
-```
+- **📊 Interactive Dashboard** - Power BI-like analytics workspace with real-time KPIs
+- **🧹 Data Quality Assessment** - Automatic issue detection with auto-fix recommendations
+- **⚙️ Data Processing Tools** - Advanced data transformation and manipulation
+- **📈 Statistical Analysis** - Descriptive statistics, correlations, and regression analysis
+- **🎨 Data Visualizations** - Interactive charts and custom visualization builder
+- **🤖 AI Agent Pipeline** - Automated end-to-end analysis workflow
+- **📄 Report Generation** - Comprehensive, executive, and technical reports
+- **📊 Dataset Preview** - Browse, search, and filter loaded data
+- **🔐 Authentication** - Secure login with demo credentials
 
-## 🎯 Key Features
+## 📋 System Requirements
 
-### 🤖 **AI-Powered Analysis**
-- Automated data quality assessment and cleaning
-- Intelligent suggestions with explanations
-- Natural language interaction via AI chatbot
-- Automated report generation
+- **Node.js**: 18.x or higher
+- **Python**: 3.9 or higher (for backend)
+- **npm** or **yarn**: Latest version
+- **RAM**: 4GB minimum (8GB recommended)
+- **Disk Space**: 2GB minimum
 
-### 📊 **Power BI-like Dashboard**
-- Interactive data visualization with real-time updates
-- Tabbed interface (Overview, Analysis, Quality, Insights)
-- AI assistant chatbot in right panel
-- Comprehensive data exploration tools
-
-### 🧹 **Advanced Data Cleaning**
-- Automatic quality scoring (0-100%)
-- Missing value detection and handling
-- Outlier identification and treatment
-- Duplicate removal with smart suggestions
-
-### 📈 **Comprehensive Analysis**
-- Descriptive statistics and correlations
-- Regression analysis with diagnostics
-- Time series analysis and forecasting
-- Interactive visualizations and charts
-
-### 📄 **Professional Reporting**
-- Automated report generation
-- Export to Word and PDF formats
-- Interactive report editing
-- Template-based reporting system
-
-## 🚀 Quick Start
+## 🚀 Installation & Setup
 
 ### Prerequisites
-- Python 3.9+
-- Node.js 18+
-- Docker (optional)
 
-### Option 1: Docker Deployment (Recommended)
-
+1. Install Node.js from [nodejs.org](https://nodejs.org/)
+2. Install Python from [python.org](https://www.python.org/)
+3. Clone the repository:
 ```bash
-# Clone the repository
 git clone <repository-url>
 cd AXIOM_AI_V4
-
-# Start with Docker Compose
-docker-compose up -d
-
-# Access the application
-# Frontend: http://localhost:3000
-# Backend API: http://localhost:8000
-# API Docs: http://localhost:8000/docs
 ```
 
-### Option 2: Manual Setup
+### Frontend Setup
 
-#### Backend Setup
-```bash
-cd backend
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Set up environment
-cp .env.example .env
-# Edit .env with your configuration
-
-# Start the backend server
-python start_server.py
-```
-
-#### Frontend Setup
+1. Navigate to the frontend directory:
 ```bash
 cd frontend
+```
 
-# Install Node.js dependencies
+2. Install dependencies:
+```bash
 npm install
+```
 
-# Start the development server
+3. Create environment file:
+```bash
+cp .env.example .env.local
+```
+
+4. Update `.env.local` with your configuration:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+5. Start the development server:
+```bash
 npm run dev
 ```
 
-### Option 3: Individual Components
+The frontend will be available at `http://localhost:3000`
 
-#### Backend Only
+### Backend Setup
+
+1. Navigate to the backend directory:
 ```bash
 cd backend
-python backend_api.py
-# API available at http://localhost:8000
 ```
 
-#### Streamlit Interface
+2. Create a Python virtual environment:
+```bash
+# On Windows
+python -m venv venv
+venv\Scripts\activate
+
+# On macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. Install Python dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Create environment file:
+```bash
+cp .env.example .env
+```
+
+5. Update `.env` with your configuration:
+```env
+FASTAPI_ENV=development
+DATABASE_URL=sqlite:///./axiom.db
+SECRET_KEY=your-secret-key-here
+```
+
+6. Start the backend server:
+```bash
+python start_server.py
+```
+
+The backend API will be available at `http://localhost:8000`
+
+## 📁 Project Structure
+
+```
+AXIOM_AI_V4/
+├── frontend/                          # Next.js 16 frontend application
+│   ├── app/
+│   │   ├── app/                       # Main application routes
+│   │   │   ├── page.tsx               # Dashboard home
+│   │   │   ├── dashboard/             # Power BI-like dashboard
+│   │   │   ├── upload/                # Dataset upload page
+│   │   │   ├── data/                  # Data preview & browser
+│   │   │   ├── quality/               # Data quality assessment
+│   │   │   ├── processing/            # Data processing tools
+│   │   │   ├── analysis/              # Statistical analysis
+│   │   │   ├── visualizations/        # Chart builder
+│   │   │   ├── agent/                 # AI agent pipeline
+│   │   │   ├── reports/               # Report generation
+│   │   │   └── layout.tsx             # App layout & navigation
+│   │   ├── login/                     # Authentication page
+│   │   ├── page.tsx                   # Landing page
+│   │   ├── layout.tsx                 # Root layout
+│   │   └── globals.css                # Global styles
+│   ├── package.json                   # Frontend dependencies
+│   ├── next.config.ts                 # Next.js configuration
+│   └── tsconfig.json                  # TypeScript configuration
+│
+├── backend/                           # FastAPI backend
+│   ├── mcp_tools/                     # MCP tool implementations
+│   │   ├── data_cleaner.py            # Data cleaning tools
+│   │   ├── advanced_eda.py            # EDA analysis
+│   │   ├── gretl.py                   # GRETL integration
+│   │   ├── report_editor.py           # Report generation
+│   │   └── visualization_mcp.py       # Visualization tools
+│   ├── backend_api.py                 # FastAPI application
+│   ├── agent.py                       # AI agent implementation
+│   ├── requirements.txt                # Python dependencies
+│   ├── start_server.py                # Server startup script
+│   └── sample_datasets/               # Sample data files
+│
+├── nginx/                             # Nginx configuration
+│   ├── nginx.conf                     # Development config
+│   └── nginx.prod.conf                # Production config
+│
+├── docs/                              # Documentation
+│   ├── INSTALLATION_GUIDE.md          # Detailed installation
+│   ├── SETUP_GUIDE.md                 # Setup instructions
+│   ├── DATA_PROCESSING_FEATURES.md    # Data processing docs
+│   └── ECONOMIC_ANALYSIS_GUIDE.md     # Analysis guide
+│
+├── docker-compose.yml                 # Docker compose (dev)
+├── docker-compose.prod.yml            # Docker compose (prod)
+├── .gitignore                         # Git ignore rules
+└── README.md                          # This file
+```
+
+## 🔐 Demo Credentials
+
+Use these credentials to test the application:
+
+- **Email**: `demo@axiom.ai`
+- **Password**: `demo123`
+
+## 📊 Sample Datasets
+
+The application includes sample datasets for testing:
+
+1. **Economic Indicators** - GDP, inflation, unemployment data
+2. **Sales Performance** - Monthly sales across regions
+3. **Stock Prices** - Historical stock market data
+4. **Customer Analytics** - User behavior and demographics
+
+Load these from the Upload page to test all features.
+
+## 🎯 Workflow
+
+### Typical Analysis Workflow
+
+1. **Upload Dataset** (`/app/upload`)
+   - Upload CSV, Excel, or JSON files
+   - Or load sample datasets
+
+2. **Preview Data** (`/app/data`)
+   - Browse and search the loaded dataset
+   - View column information and data types
+
+3. **Quality Assessment** (`/app/quality`)
+   - Automatic issue detection
+   - View recommendations
+   - Auto-fix available issues
+
+4. **Data Processing** (`/app/processing`)
+   - Apply transformations
+   - Handle missing values
+   - Remove duplicates and outliers
+
+5. **Statistical Analysis** (`/app/analysis`)
+   - Descriptive statistics
+   - Correlation analysis
+   - Regression modeling
+   - Time series forecasting
+
+6. **Visualizations** (`/app/visualizations`)
+   - Create custom charts
+   - Interactive visualizations
+   - Export as PNG/SVG
+
+7. **AI Agent Pipeline** (`/app/agent`)
+   - Automated end-to-end analysis
+   - Pattern detection
+   - Predictive modeling
+   - Insight generation
+
+8. **Reports** (`/app/reports`)
+   - Generate comprehensive reports
+   - Executive summaries
+   - Technical analysis
+   - Export as PDF/DOCX
+
+## 🛠️ Development
+
+### Frontend Development
+
+```bash
+cd frontend
+
+# Development server with hot reload
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Run linting
+npm run lint
+
+# Fix linting issues
+npm run lint:fix
+```
+
+### Backend Development
+
 ```bash
 cd backend
-python streamlit_app.py
-# Streamlit UI at http://localhost:8501
+
+# Activate virtual environment
+source venv/bin/activate  # macOS/Linux
+# or
+venv\Scripts\activate     # Windows
+
+# Run development server
+python start_server.py
+
+# Run tests
+pytest
+
+# View API documentation
+# Visit http://localhost:8000/docs
 ```
 
-## 📡 API Overview
+## 📦 Dependencies
 
-### Core Endpoints
+### Frontend
+- **Next.js 16** - React framework
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Chart.js** - Data visualization
+- **Framer Motion** - Animations
+- **Zustand** - State management
 
-| Category | Endpoint | Method | Description |
-|----------|----------|---------|-------------|
-| **Dataset** | `/api/dataset/upload` | POST | Upload dataset file |
-| | `/api/dataset/info` | GET | Get dataset information |
-| | `/api/dataset/sample/{n}` | GET | Get sample data |
-| **Analysis** | `/api/analysis/descriptive` | POST | Descriptive statistics |
-| | `/api/analysis/regression` | POST | Regression analysis |
-| | `/api/analysis/timeseries` | POST | Time series analysis |
-| **Cleaning** | `/api/cleaning/quality-report` | GET | Data quality assessment |
-| | `/api/cleaning/automated` | POST | Automated cleaning |
-| | `/api/cleaning/suggestions` | GET | AI cleaning suggestions |
-| **Reports** | `/api/reports/create` | POST | Create new report |
-| | `/api/reports/export/word` | POST | Export to Word |
-| | `/api/reports/export/pdf` | POST | Export to PDF |
-
-## 🎨 Dashboard Features
-
-### **Power BI-like Interface**
-- **Modern Design**: Professional gradient backgrounds and typography
-- **Interactive Charts**: Canvas-based visualizations with hover effects
-- **Responsive Layout**: Works on desktop and mobile devices
-- **Real-time Updates**: Live data refresh and progress tracking
-
-### **AI Assistant (Right Panel)**
-- Natural language queries for data analysis
-- Automated task execution with progress feedback
-- Quick action shortcuts for common operations
-- Contextual suggestions based on dataset characteristics
-
-### **Visualization Panel (Center)**
-- **Correlation Matrix**: Interactive heatmap with detailed tooltips
-- **Distribution Charts**: Statistical analysis with bar and line charts
-- **Scatter Plots**: Relationship analysis between variables
-- **Time Series**: Trend analysis with interactive line charts
-- **Box Plots**: Quartile analysis for outlier detection
-
-### **Data Quality Insights**
-- Visual quality score with color-coded indicators
-- Detailed breakdown of data issues
-- AI-powered suggestions with explanations
-- One-click fixes for common problems
-
-
+### Backend
+- **FastAPI** - Web framework
+- **Pandas** - Data manipulation
+- **NumPy** - Numerical computing
+- **Scikit-learn** - Machine learning
+- **Matplotlib/Seaborn** - Visualization
+- **SQLAlchemy** - Database ORM
 
 ## 🔧 Configuration
 
-### Backend Environment Variables
+### Environment Variables
+
+**Frontend (.env.local)**
 ```env
-# Server Configuration
-DEBUG=False
-API_HOST=0.0.0.0
-API_PORT=8000
-
-# CORS Configuration
-CORS_ORIGINS=["http://localhost:3000"]
-
-# File Upload Limits
-MAX_FILE_SIZE=100MB
-ALLOWED_EXTENSIONS=["csv", "xlsx", "json"]
-```
-
-### Frontend Environment Variables
-```env
-# API Configuration
 NEXT_PUBLIC_API_URL=http://localhost:8000
-
-# Development
-NODE_ENV=development
+NEXT_PUBLIC_APP_NAME=AXIOM AI
 ```
 
-## 📚 Documentation
+**Backend (.env)**
+```env
+FASTAPI_ENV=development
+DATABASE_URL=sqlite:///./axiom.db
+SECRET_KEY=your-secret-key-here
+CORS_ORIGINS=http://localhost:3000
+```
 
-- **[Backend README](backend/README.md)** - Backend-specific documentation
-- **[Frontend README](frontend/README.md)** - Frontend-specific documentation
-- **[Dashboard Guide](frontend/app/app/dashboard/README.md)** - Dashboard features and usage
-- **[Project Documentation](PROJECT_DOCUMENTATION.md)** - Comprehensive technical docs
-- **[Deployment Guide](DEPLOYMENT_GUIDE.md)** - Production deployment instructions
+## 📚 API Documentation
 
-## 🔒 Security Features
+Once the backend is running, visit:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
 
-- **Input Validation**: File type and size validation
-- **CORS Configuration**: Cross-origin request control
-- **Error Handling**: Secure error messages
-- **Rate Limiting**: API usage throttling (when deployed)
+## 🐛 Troubleshooting
 
-## 📊 Analysis Capabilities
+### Frontend Issues
 
-### **Statistical Analysis**
-- Descriptive statistics with comprehensive metrics
-- Correlation analysis and interactive matrices
-- Distribution analysis with visual representations
-- Missing value pattern analysis
-
-### **Machine Learning**
-- Linear and multiple regression analysis
-- Time series forecasting with confidence intervals
-- Outlier detection using multiple methods
-- Automated feature engineering suggestions
-
-### **Business Intelligence**
-- KPI calculations and trend analysis
-- Comparative analysis capabilities
-- Performance metrics and benchmarking
-- Automated insight generation
-
-## 🚀 Deployment Options
-
-### **Development**
+**Port 3000 already in use**
 ```bash
-# Backend
-cd backend && python start_server.py
+# Kill the process using port 3000
+# Windows
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
 
-# Frontend
-cd frontend && npm run dev
+# macOS/Linux
+lsof -ti:3000 | xargs kill -9
 ```
 
-### **Production with Docker**
+**Module not found errors**
 ```bash
-docker-compose up -d
+# Clear cache and reinstall
+rm -rf node_modules package-lock.json
+npm install
 ```
 
-### **Production Manual**
+### Backend Issues
+
+**Port 8000 already in use**
 ```bash
-# Backend with Gunicorn
-cd backend
-gunicorn backend_api:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
-
-# Frontend build
-cd frontend
-npm run build
-npm start
+# Use a different port
+python start_server.py --port 8001
 ```
 
-## 🔍 Monitoring & Health Checks
+**Python dependencies conflict**
+```bash
+# Recreate virtual environment
+rm -rf venv
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+```
 
-### Health Endpoints
-- `/api/health` - Backend health status
-- `/api/capabilities` - Available features and tools
+## 📖 Documentation
 
-### Monitoring Features
-- Request/response logging
-- Performance metrics tracking
-- Error rate monitoring
-- Resource usage tracking
+- [Installation Guide](docs/INSTALLATION_GUIDE.md)
+- [Setup Guide](docs/SETUP_GUIDE.md)
+- [Data Processing Features](docs/DATA_PROCESSING_FEATURES.md)
+- [Economic Analysis Guide](docs/ECONOMIC_ANALYSIS_GUIDE.md)
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes in the appropriate directory (`backend/` or `frontend/`)
-4. Add tests for new functionality
-5. Commit your changes (`git commit -m 'Add amazing feature'`)
-6. Push to the branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+1. Create a feature branch: `git checkout -b feature/your-feature`
+2. Commit changes: `git commit -am 'Add new feature'`
+3. Push to branch: `git push origin feature/your-feature`
+4. Submit a pull request
 
-## 📝 License
+## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see LICENSE file for details.
 
 ## 🆘 Support
 
-For support and questions:
-- Check the component-specific documentation in `backend/` and `frontend/`
-- Review the [dashboard guide](frontend/app/app/dashboard/README.md)
+For issues, questions, or suggestions:
 - Open an issue on GitHub
-- Contact the development team
+- Check existing documentation
+- Review sample datasets and guides
 
-## 🔄 Version History
+## 🎓 Learning Resources
 
-### v2.0.0 (Current)
-- **New Architecture**: Separated backend and frontend into distinct directories
-- **Power BI Dashboard**: Complete dashboard interface with AI assistant
-- **Enhanced API**: Improved endpoints with better error handling
-- **Docker Support**: Full containerization with docker-compose
-- **Comprehensive Testing**: Expanded test coverage for both components
+- [Next.js Documentation](https://nextjs.org/docs)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Pandas Documentation](https://pandas.pydata.org/docs/)
+- [Chart.js Documentation](https://www.chartjs.org/docs/)
 
-### v1.0.0
-- Initial monolithic structure
-- Basic API functionality
-- Simple frontend interface
-- Core analysis capabilities
+## 🚀 Performance Tips
+
+1. **Frontend**
+   - Use production builds for deployment
+   - Enable caching headers
+   - Optimize images and assets
+
+2. **Backend**
+   - Use connection pooling for databases
+   - Implement caching for frequent queries
+   - Monitor API response times
+
+3. **Data Processing**
+   - Process large datasets in chunks
+   - Use appropriate data types
+   - Index frequently queried columns
+
+## 📊 Roadmap
+
+- [ ] Real-time data streaming
+- [ ] Advanced ML models
+- [ ] Multi-user collaboration
+- [ ] Cloud deployment templates
+- [ ] Mobile app
+- [ ] API rate limiting
+- [ ] Advanced caching
 
 ---
 
-**Built with ❤️ for intelligent data analysis and business intelligence**
+**Version**: 1.0.0  
+**Last Updated**: April 2026  
+**Status**: Production Ready

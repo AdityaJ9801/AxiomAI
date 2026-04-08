@@ -7,9 +7,10 @@ import Link from 'next/link';
 const NAV_ITEMS = [
     { id: 'dashboard', label: 'Dashboard', icon: '🏠', href: '/app' },
     { id: 'upload', label: 'Upload Data', icon: '📁', href: '/app/upload' },
+    { id: 'data', label: 'Data Preview', icon: '📊', href: '/app/data' },
     { id: 'quality', label: 'Data Quality', icon: '🧹', href: '/app/quality' },
     { id: 'processing', label: 'Data Processing', icon: '⚙️', href: '/app/processing' },
-    { id: 'analysis', label: 'Analysis', icon: '📊', href: '/app/analysis' },
+    { id: 'analysis', label: 'Analysis', icon: '📈', href: '/app/analysis' },
     { id: 'agent', label: 'AI Agent', icon: '🤖', href: '/app/agent' },
     { id: 'reports', label: 'Reports', icon: '📄', href: '/app/reports' },
 ];

@@ -30,35 +30,74 @@ export default function UploadPage() {
         setError('');
 
         try {
-            // Demo mode: simulate upload process
-            await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate upload time
+            // Read file content
+            const fileContent = await file.text();
 
-            // Store mock dataset info in localStorage for demo
-            const mockDatasetInfo = {
+            // Parse based on file type
+            let parsedData: any[] = [];
+            let columns: string[] = [];
+
+            if (fileExtension === '.csv') {
+                const lines = fileContent.split('\n').filter(line => line.trim());
+                if (lines.length > 0) {
+                    columns = lines[0].split(',').map(col => col.trim());
+                    for (let i = 1; i < Math.min(lines.length, 1001); i++) {
+                        const values = lines[i].split(',').map(val => val.trim());
+                        const row: any = {};
+                        columns.forEach((col, idx) => {
+                            row[col] = values[idx] || '';
+                        });
+                        parsedData.push(row);
+                    }
+                }
+            } else if (fileExtension === '.json') {
+                const json = JSON.parse(fileContent);
+                parsedData = Array.isArray(json) ? json : [json];
+                if (parsedData.length > 0) {
+                    columns = Object.keys(parsedData[0]);
+                }
+            }
+
+            // Infer data types
+            const dtypes: Record<string, string> = {};
+            columns.forEach(col => {
+                if (parsedData.length > 0) {
+                    const sample = parsedData[0][col];
+                    if (col.toLowerCase().includes('date')) {
+                        dtypes[col] = 'datetime64';
+                    } else if (typeof sample === 'number') {
+                        dtypes[col] = Number.isInteger(sample) ? 'int64' : 'float64';
+                    } else {
+                        dtypes[col] = 'object';
+                    }
+                }
+            });
+
+            // Simulate processing time
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Store dataset info in localStorage
+            const datasetInfo = {
                 filename: file.name,
                 size: file.size,
-                columns: ['Date', 'Revenue', 'Customers', 'Region', 'Product_Category', 'Sales_Rep'],
-                shape: [1250, 6],
-                quality_score: 94,
-                dtypes: {
-                    'Date': 'datetime64',
-                    'Revenue': 'float64',
-                    'Customers': 'int64',
-                    'Region': 'object',
-                    'Product_Category': 'object',
-                    'Sales_Rep': 'object'
-                },
-                upload_time: new Date().toISOString()
+                columns: columns,
+                shape: [parsedData.length, columns.length],
+                quality_score: Math.floor(Math.random() * 20) + 80, // 80-100%
+                dtypes: dtypes,
+                upload_time: new Date().toISOString(),
+                data: parsedData.slice(0, 100) // Store first 100 rows for preview
             };
 
-            localStorage.setItem('axiom_dataset', JSON.stringify(mockDatasetInfo));
+            localStorage.setItem('axiom_dataset', JSON.stringify(datasetInfo));
+            localStorage.setItem('axiom_dataset_full', JSON.stringify(parsedData)); // Store full data
 
             // Show success message briefly then redirect to quality check
             setTimeout(() => {
                 router.push('/app/quality');
             }, 500);
         } catch (err) {
-            setError('Upload failed. Please try again.');
+            console.error('Upload error:', err);
+            setError('Upload failed. Please check the file format and try again.');
         } finally {
             setUploading(false);
         }
@@ -89,12 +128,39 @@ export default function UploadPage() {
             // Simulate loading time
             await new Promise(resolve => setTimeout(resolve, 1000));
 
-            // Create mock dataset info based on sample
+            // Generate mock data based on sample
+            const mockData = [];
+            for (let i = 0; i < 500; i++) {
+                const row: any = {};
+                sample.columns.forEach((col: string) => {
+                    if (col.toLowerCase().includes('date')) {
+                        const date = new Date(2024, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
+                        row[col] = date.toISOString().split('T')[0];
+                    } else if (['Revenue', 'GDP', 'Open', 'High', 'Low', 'Close', 'Income', 'Purchases'].includes(col)) {
+                        row[col] = Math.floor(Math.random() * 100000) + 10000;
+                    } else if (['Customers', 'Unemployment', 'Interest_Rate', 'Volume', 'Age'].includes(col)) {
+                        row[col] = Math.floor(Math.random() * 1000) + 50;
+                    } else if (['Inflation'].includes(col)) {
+                        row[col] = (Math.random() * 5 + 1).toFixed(2);
+                    } else if (col.toLowerCase().includes('region')) {
+                        row[col] = ['North', 'South', 'East', 'West'][Math.floor(Math.random() * 4)];
+                    } else if (col.toLowerCase().includes('category') || col.toLowerCase().includes('segment')) {
+                        row[col] = ['Electronics', 'Clothing', 'Food', 'Books', 'Enterprise', 'SMB', 'Startup'][Math.floor(Math.random() * 7)];
+                    } else if (col.toLowerCase().includes('symbol')) {
+                        row[col] = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'TSLA'][Math.floor(Math.random() * 5)];
+                    } else {
+                        row[col] = `Sample ${i + 1}`;
+                    }
+                });
+                mockData.push(row);
+            }
+
+            // Create dataset info
             const mockDatasetInfo = {
                 filename: `${sample.name.toLowerCase().replace(/\s+/g, '_')}.csv`,
                 size: parseFloat(sample.size) * 1024, // Convert KB to bytes
                 columns: sample.columns,
-                shape: [Math.floor(Math.random() * 1000) + 500, sample.columns.length],
+                shape: [mockData.length, sample.columns.length],
                 quality_score: Math.floor(Math.random() * 20) + 80, // 80-100%
                 dtypes: sample.columns.reduce((acc: any, col: string) => {
                     // Assign realistic data types
@@ -105,10 +171,12 @@ export default function UploadPage() {
                     else acc[col] = 'object';
                     return acc;
                 }, {}),
-                upload_time: new Date().toISOString()
+                upload_time: new Date().toISOString(),
+                data: mockData.slice(0, 100) // Store first 100 rows for preview
             };
 
             localStorage.setItem('axiom_dataset', JSON.stringify(mockDatasetInfo));
+            localStorage.setItem('axiom_dataset_full', JSON.stringify(mockData)); // Store full data
 
             // Redirect to quality check first
             setTimeout(() => {

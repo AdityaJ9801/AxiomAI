@@ -50,7 +50,6 @@ export default function DashboardPage() {
     const generateDashboardData = () => {
         setLoading(true);
 
-        // Simulate data loading
         setTimeout(() => {
             const mockKPIs: KPI[] = [
                 {
@@ -170,7 +169,6 @@ export default function DashboardPage() {
 
     return (
         <div style={{ maxWidth: 1600 }}>
-            {/* Dashboard Header */}
             <div style={{
                 background: 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.08))',
                 border: '1px solid rgba(59,130,246,0.15)',
@@ -187,37 +185,24 @@ export default function DashboardPage() {
                     </p>
                 </div>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                    <select
-                        className="input"
-                        style={{ width: 120, fontSize: 12 }}
-                        value={selectedTimeframe}
-                        onChange={e => setSelectedTimeframe(e.target.value)}
-                    >
+                    <select className="input" style={{ width: 120, fontSize: 12 }} value={selectedTimeframe} onChange={e => setSelectedTimeframe(e.target.value)}>
                         <option value="1M">Last Month</option>
                         <option value="3M">Last 3 Months</option>
                         <option value="6M">Last 6 Months</option>
                         <option value="12M">Last 12 Months</option>
                         <option value="YTD">Year to Date</option>
                     </select>
-                    <select
-                        className="input"
-                        style={{ width: 120, fontSize: 12 }}
-                        value={selectedRegion}
-                        onChange={e => setSelectedRegion(e.target.value)}
-                    >
+                    <select className="input" style={{ width: 120, fontSize: 12 }} value={selectedRegion} onChange={e => setSelectedRegion(e.target.value)}>
                         <option value="All">All Regions</option>
                         <option value="North">North</option>
                         <option value="South">South</option>
                         <option value="East">East</option>
                         <option value="West">West</option>
                     </select>
-                    <button className="btn btn-primary btn-sm">
-                        🔄 Refresh Data
-                    </button>
+                    <button className="btn btn-primary btn-sm">🔄 Refresh Data</button>
                 </div>
             </div>
 
-            {/* KPI Cards */}
             <div className="grid-4" style={{ marginBottom: 28 }}>
                 {kpis.map(kpi => (
                     <div key={kpi.id} className="stat-card" style={{ position: 'relative', overflow: 'hidden' }}>
@@ -235,18 +220,11 @@ export default function DashboardPage() {
                             <div style={{
                                 display: 'flex', alignItems: 'center', gap: 4,
                                 padding: '4px 8px', borderRadius: 12,
-                                background: kpi.trend === 'up' ? 'rgba(16,185,129,0.15)' :
-                                    kpi.trend === 'down' ? 'rgba(239,68,68,0.15)' : 'rgba(100,116,139,0.15)',
-                                border: `1px solid ${kpi.trend === 'up' ? 'rgba(16,185,129,0.3)' :
-                                    kpi.trend === 'down' ? 'rgba(239,68,68,0.3)' : 'rgba(100,116,139,0.3)'}`
+                                background: kpi.trend === 'up' ? 'rgba(16,185,129,0.15)' : kpi.trend === 'down' ? 'rgba(239,68,68,0.15)' : 'rgba(100,116,139,0.15)',
+                                border: `1px solid ${kpi.trend === 'up' ? 'rgba(16,185,129,0.3)' : kpi.trend === 'down' ? 'rgba(239,68,68,0.3)' : 'rgba(100,116,139,0.3)'}`
                             }}>
-                                <span style={{ fontSize: 10 }}>
-                                    {kpi.trend === 'up' ? '↗️' : kpi.trend === 'down' ? '↘️' : '➡️'}
-                                </span>
-                                <span style={{
-                                    fontSize: 11, fontWeight: 600,
-                                    color: kpi.trend === 'up' ? '#10b981' : kpi.trend === 'down' ? '#ef4444' : '#64748b'
-                                }}>
+                                <span style={{ fontSize: 10 }}>{kpi.trend === 'up' ? '↗️' : kpi.trend === 'down' ? '↘️' : '➡️'}</span>
+                                <span style={{ fontSize: 11, fontWeight: 600, color: kpi.trend === 'up' ? '#10b981' : kpi.trend === 'down' ? '#ef4444' : '#64748b' }}>
                                     {kpi.change > 0 ? '+' : ''}{kpi.change}%
                                 </span>
                             </div>
@@ -257,9 +235,7 @@ export default function DashboardPage() {
                 ))}
             </div>
 
-            {/* Main Dashboard Grid */}
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24, marginBottom: 24 }}>
-                {/* Revenue Trend */}
                 <div className="card">
                     <div className="card-header">
                         <span className="card-title">📈 Revenue Trend</span>
@@ -269,148 +245,63 @@ export default function DashboardPage() {
                         </div>
                     </div>
                     <div style={{ height: 300, padding: '0 16px 16px' }}>
-                        <InteractiveChart
-                            type="line"
-                            data={revenueData}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                    legend: {
-                                        display: false
-                                    }
-                                },
-                                scales: {
-                                    x: {
-                                        ticks: { color: '#8898aa' },
-                                        grid: { color: 'rgba(255,255,255,0.05)' }
-                                    },
-                                    y: {
-                                        ticks: {
-                                            color: '#8898aa',
-                                            callback: function (value) {
-                                                return '$' + (Number(value) / 1000).toFixed(0) + 'K';
-                                            }
-                                        },
-                                        grid: { color: 'rgba(255,255,255,0.05)' }
-                                    }
-                                }
-                            }}
-                        />
+                        <InteractiveChart type="line" data={revenueData} options={{
+                            responsive: true, maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { ticks: { color: '#8898aa' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                                y: { ticks: { color: '#8898aa', callback: (value: any) => '$' + (Number(value) / 1000).toFixed(0) + 'K' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                            }
+                        }} />
                     </div>
                 </div>
 
-                {/* Regional Performance */}
                 <div className="card">
                     <div className="card-header">
                         <span className="card-title">🗺️ Regional Performance</span>
                     </div>
                     <div style={{ height: 300, padding: '0 16px 16px' }}>
-                        <InteractiveChart
-                            type="bar"
-                            data={regionalData}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                    legend: { display: false }
-                                },
-                                scales: {
-                                    x: {
-                                        ticks: { color: '#8898aa' },
-                                        grid: { display: false }
-                                    },
-                                    y: {
-                                        ticks: {
-                                            color: '#8898aa',
-                                            callback: function (value) {
-                                                return '$' + (Number(value) / 1000).toFixed(0) + 'K';
-                                            }
-                                        },
-                                        grid: { color: 'rgba(255,255,255,0.05)' }
-                                    }
-                                }
-                            }}
-                        />
+                        <InteractiveChart type="bar" data={regionalData} options={{
+                            responsive: true, maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { ticks: { color: '#8898aa' }, grid: { display: false } },
+                                y: { ticks: { color: '#8898aa', callback: (value: any) => '$' + (Number(value) / 1000).toFixed(0) + 'K' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                            }
+                        }} />
                     </div>
                 </div>
             </div>
 
-            {/* Secondary Charts Grid */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24 }}>
-                {/* Customer Segments */}
                 <div className="card">
                     <div className="card-header">
                         <span className="card-title">👥 Customer Segments</span>
                     </div>
                     <div style={{ height: 250, padding: '0 16px 16px' }}>
-                        <InteractiveChart
-                            type="pie"
-                            data={customerSegmentData}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            color: '#cbd5e1',
-                                            font: { size: 11 },
-                                            padding: 15
-                                        }
-                                    }
-                                }
-                            }}
-                        />
+                        <InteractiveChart type="pie" data={customerSegmentData} options={{
+                            responsive: true, maintainAspectRatio: false,
+                            plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { size: 11 }, padding: 15 } } }
+                        }} />
                     </div>
                 </div>
 
-                {/* Performance Correlation */}
                 <div className="card">
                     <div className="card-header">
                         <span className="card-title">🔵 Performance Correlation</span>
                     </div>
                     <div style={{ height: 250, padding: '0 16px 16px' }}>
-                        <InteractiveChart
-                            type="scatter"
-                            data={performanceData}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                    legend: { display: false }
-                                },
-                                scales: {
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Customers',
-                                            color: '#8898aa'
-                                        },
-                                        ticks: { color: '#8898aa' },
-                                        grid: { color: 'rgba(255,255,255,0.05)' }
-                                    },
-                                    y: {
-                                        title: {
-                                            display: true,
-                                            text: 'Revenue',
-                                            color: '#8898aa'
-                                        },
-                                        ticks: {
-                                            color: '#8898aa',
-                                            callback: function (value) {
-                                                return '$' + (Number(value) / 1000).toFixed(0) + 'K';
-                                            }
-                                        },
-                                        grid: { color: 'rgba(255,255,255,0.05)' }
-                                    }
-                                }
-                            }}
-                        />
+                        <InteractiveChart type="scatter" data={performanceData} options={{
+                            responsive: true, maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { title: { display: true, text: 'Customers', color: '#8898aa' }, ticks: { color: '#8898aa' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                                y: { title: { display: true, text: 'Revenue', color: '#8898aa' }, ticks: { color: '#8898aa', callback: (value: any) => '$' + (Number(value) / 1000).toFixed(0) + 'K' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                            }
+                        }} />
                     </div>
                 </div>
 
-                {/* Quick Insights */}
                 <div className="card">
                     <div className="card-header">
                         <span className="card-title">💡 Quick Insights</span>
@@ -432,9 +323,7 @@ export default function DashboardPage() {
                                     border: `1px solid ${insight.color}20`
                                 }}>
                                     <span style={{ fontSize: 16 }}>{insight.icon}</span>
-                                    <span style={{ fontSize: 12, color: '#cbd5e1', flex: 1 }}>
-                                        {insight.text}
-                                    </span>
+                                    <span style={{ fontSize: 12, color: '#cbd5e1', flex: 1 }}>{insight.text}</span>
                                 </div>
                             ))}
                         </div>

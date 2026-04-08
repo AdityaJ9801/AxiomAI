@@ -14,7 +14,7 @@ interface DatasetInfo {
 
 interface ChartConfig {
     id: string;
-    type: 'line' | 'bar' | 'scatter' | 'pie' | 'heatmap' | 'histogram';
+    type: 'line' | 'bar' | 'scatter' | 'pie';
     title: string;
     xAxis?: string;
     yAxis?: string;
@@ -266,7 +266,6 @@ export default function VisualizationsPage() {
                                     <option value="bar">📊 Bar Chart</option>
                                     <option value="scatter">🔵 Scatter Plot</option>
                                     <option value="pie">🥧 Pie Chart</option>
-                                    <option value="histogram">📊 Histogram</option>
                                 </select>
                             </div>
 
