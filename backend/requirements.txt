@@ -1,0 +1,52 @@
+# Core LangChain and LLM
+langchain
+langchain-openai
+langchain-ollama
+langchain-core
+langchain-mcp-adapters
+langgraph
+
+# MCP (Model Context Protocol)
+mcp
+fastmcp
+
+# Backend API Framework
+fastapi
+uvicorn[standard]
+python-multipart
+
+# Data Science
+pandas
+numpy
+scipy
+scikit-learn
+statsmodels
+
+# Econometric Analysis
+arch  # For GARCH models and econometric tests
+linearmodels  # For advanced econometric models
+pmdarima  # For auto-ARIMA
+
+# Visualization
+plotly
+kaleido
+
+# Web Interface (Optional - for GUI)
+streamlit
+streamlit-plotly-events
+
+# Document Processing
+python-docx
+reportlab  # For PDF generation
+markdown  # For markdown processing
+weasyprint  # Alternative PDF generation
+
+# CLI Interface
+rich
+
+# Environment
+python-dotenv
+
+# Excel support for pandas
+openpyxl
+xlsxwriter

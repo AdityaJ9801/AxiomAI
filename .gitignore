@@ -1,0 +1,387 @@
+# ============================================================================
+# AXIOM AI - Git Ignore File
+# Excludes sensitive files, build artifacts, and temporary files
+# ============================================================================
+
+# ── Environment Files ──────────────────────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+.env.*
+!.env.example
+!.env.production
+
+# ── Logs ───────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ── Runtime Data ───────────────────────────────────────────────────────────
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# ── Coverage Directory ─────────────────────────────────────────────────────
+coverage/
+*.lcov
+.nyc_output
+
+# ── Dependency Directories ─────────────────────────────────────────────────
+node_modules/
+jspm_packages/
+
+# ── Optional npm Cache Directory ───────────────────────────────────────────
+.npm
+
+# ── Optional eslint Cache ──────────────────────────────────────────────────
+.eslintcache
+
+# ── Microbundle Cache ──────────────────────────────────────────────────────
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# ── Optional REPL History ──────────────────────────────────────────────────
+.node_repl_history
+
+# ── Output of 'npm pack' ───────────────────────────────────────────────────
+*.tgz
+
+# ── Yarn Integrity File ────────────────────────────────────────────────────
+.yarn-integrity
+
+# ── Next.js Build Output ───────────────────────────────────────────────────
+.next/
+out/
+build/
+dist/
+
+# ── Nuxt.js Build / Generate Output ────────────────────────────────────────
+.nuxt
+.output
+
+# ── Gatsby Files ───────────────────────────────────────────────────────────
+.cache/
+public/
+
+# ── Vuepress Build Output ──────────────────────────────────────────────────
+.vuepress/dist
+
+# ── Serverless Directories ─────────────────────────────────────────────────
+.serverless/
+
+# ── FuseBox Cache ──────────────────────────────────────────────────────────
+.fusebox/
+
+# ── DynamoDB Local Files ───────────────────────────────────────────────────
+.dynamodb/
+
+# ── TernJS Port File ────────────────────────────────────────────────────────
+.tern-port
+
+# ── Stores VSCode Versions ─────────────────────────────────────────────────
+.vscode-test
+
+# ── Python ─────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ── PyInstaller ────────────────────────────────────────────────────────────
+*.manifest
+*.spec
+
+# ── Installer Logs ─────────────────────────────────────────────────────────
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ── Unit Test / Coverage Reports ───────────────────────────────────────────
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# ── Translations ───────────────────────────────────────────────────────────
+*.mo
+*.pot
+
+# ── Django Stuff ───────────────────────────────────────────────────────────
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# ── Flask Stuff ────────────────────────────────────────────────────────────
+instance/
+.webassets-cache
+
+# ── Scrapy Stuff ───────────────────────────────────────────────────────────
+.scrapy
+
+# ── Sphinx Documentation ───────────────────────────────────────────────────
+docs/_build/
+
+# ── PyBuilder ──────────────────────────────────────────────────────────────
+.pybuilder/
+target/
+
+# ── Jupyter Notebook ───────────────────────────────────────────────────────
+.ipynb_checkpoints
+
+# ── IPython ────────────────────────────────────────────────────────────────
+profile_default/
+ipython_config.py
+
+# ── pyenv ──────────────────────────────────────────────────────────────────
+.python-version
+
+# ── pipenv ─────────────────────────────────────────────────────────────────
+Pipfile.lock
+
+# ── poetry ─────────────────────────────────────────────────────────────────
+poetry.lock
+
+# ── pdm ────────────────────────────────────────────────────────────────────
+.pdm.toml
+
+# ── PEP 582 ────────────────────────────────────────────────────────────────
+__pypackages__/
+
+# ── Celery Beat Schedule File ──────────────────────────────────────────────
+celerybeat-schedule
+celerybeat.pid
+
+# ── SageMath Parsed Files ──────────────────────────────────────────────────
+*.sage.py
+
+# ── Environments ───────────────────────────────────────────────────────────
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ── Spyder Project Settings ────────────────────────────────────────────────
+.spyderproject
+.spyproject
+
+# ── Rope Project Settings ──────────────────────────────────────────────────
+.ropeproject
+
+# ── mkdocs Documentation ───────────────────────────────────────────────────
+/site
+
+# ── mypy ───────────────────────────────────────────────────────────────────
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ── Pyre Type Checker ──────────────────────────────────────────────────────
+.pyre/
+
+# ── pytype Static Type Analyzer ────────────────────────────────────────────
+.pytype/
+
+# ── Cython Debug Symbols ───────────────────────────────────────────────────
+cython_debug/
+
+# ── IDE and Editor Files ───────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ── OS Generated Files ─────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Application Data ───────────────────────────────────────────────────────
+uploads/
+exports/
+reports/
+temp/
+tmp/
+data/
+backups/
+
+# ── User Uploaded Files ────────────────────────────────────────────────────
+*.csv
+*.xlsx
+*.xls
+*.json
+*.pdf
+*.docx
+*.doc
+*.ppt
+*.pptx
+
+# ── Docker ─────────────────────────────────────────────────────────────────
+.docker/
+docker-compose.override.yml
+
+# ── SSL Certificates ───────────────────────────────────────────────────────
+nginx/ssl/
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# ── Database Files ─────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# ── Cache Files ────────────────────────────────────────────────────────────
+.cache/
+*.cache
+.parcel-cache/
+
+# ── Temporary Files ────────────────────────────────────────────────────────
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# ── Backup Files ───────────────────────────────────────────────────────────
+*.bak
+*.backup
+*.old
+*~
+
+# ── Compressed Files ───────────────────────────────────────────────────────
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# ── Configuration Files (Keep Examples) ────────────────────────────────────
+config.json
+config.yaml
+config.yml
+!config.example.json
+!config.example.yaml
+!config.example.yml
+
+# ── API Keys and Secrets ───────────────────────────────────────────────────
+secrets/
+.secrets
+api_keys.txt
+credentials.json
+service-account.json
+
+# ── Testing ────────────────────────────────────────────────────────────────
+.pytest_cache/
+test-results/
+test-reports/
+coverage-reports/
+
+# ── Monitoring and Metrics ─────────────────────────────────────────────────
+metrics/
+monitoring/
+grafana/data/
+prometheus/data/
+
+# ── Local Development ──────────────────────────────────────────────────────
+.local/
+local/
+dev/
+development/
+
+# ── Package Manager Lock Files (Optional) ──────────────────────────────────
+# Uncomment if you want to ignore lock files
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# ── Build Tools ────────────────────────────────────────────────────────────
+.webpack/
+.rollup.cache/
+.turbo/
+.swc/
+
+# ── Storybook ──────────────────────────────────────────────────────────────
+storybook-static/
+
+# ── Terraform ──────────────────────────────────────────────────────────────
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# ── Kubernetes ─────────────────────────────────────────────────────────────
+*.kubeconfig
+
+# ── Cloud Provider Configs ─────────────────────────────────────────────────
+.aws/
+.gcp/
+.azure/
+
+# ── Custom Application Files ───────────────────────────────────────────────
+# Add any project-specific files to ignore here
+agent_session.log
+*.session
+session_*
+
+# ── Keep Important Files ───────────────────────────────────────────────────
+# Use ! to force include important files that might be ignored by patterns above
+!.gitkeep
+!.env.example
+!.env.production
+!README.md
+!LICENSE
+!CHANGELOG.md
