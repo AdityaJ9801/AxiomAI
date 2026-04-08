@@ -172,14 +172,7 @@ python streamlit_app.py
 - AI-powered suggestions with explanations
 - One-click fixes for common problems
 
-## 🧪 Sample Datasets
 
-The platform includes sample datasets for testing:
-
-- `sample_economic_data.csv` - Clean economic time series data
-- `messy_economic_data.csv` - Mixed format data with quality issues
-- `complex_economic_data.csv` - Advanced economic indicators
-- `problematic_data.csv` - Business data with various problems
 
 ## 🔧 Configuration
 
