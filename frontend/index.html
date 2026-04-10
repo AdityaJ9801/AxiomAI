@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AxiomAI — Agentic Data Analysis Platform</title>
+  <meta name="description" content="AxiomAI: AI-powered agentic data analysis platform with EDA, cleaning, visualizations, insights, and report generation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-mark">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#4F46E5" stroke-width="1.5" fill="none"/><path d="M10 6L14 8V12L10 14L6 12V8L10 6Z" fill="#4F46E5" opacity="0.5"/></svg>
+        </div>
+        <div>
+          <div class="logo-name">AxiomAI</div>
+          <div class="logo-sub">AGENTIC INTELLIGENCE</div>
+        </div>
+      </div>
+
+      <button class="new-analysis-btn" onclick="navigate('upload')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Analysis
+      </button>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item" data-page="dashboard" onclick="navigate('dashboard')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+        <a class="nav-item" data-page="upload" onclick="navigate('upload')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload Dataset
+        </a>
+        <a class="nav-item" data-page="eda" onclick="navigate('eda')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          EDA &amp; Analysis
+        </a>
+        <a class="nav-item" data-page="quality" onclick="navigate('quality')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Data Quality
+        </a>
+        <a class="nav-item" data-page="visualizations" onclick="navigate('visualizations')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Visualizations
+        </a>
+        <a class="nav-item" data-page="insights" onclick="navigate('insights')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Insights &amp; KPIs
+        </a>
+        <a class="nav-item" data-page="reports" onclick="navigate('reports')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Reports
+        </a>
+        <a class="nav-item" data-page="chat" onclick="navigate('chat')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Chat with AI
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <div class="user-avatar">A</div>
+          <div>
+            <div class="user-name">Alex Rivers</div>
+            <div class="user-role">System Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main">
+      <!-- Top Header -->
+      <header id="top-header">
+        <div class="breadcrumb" id="breadcrumb">Home &rsaquo; Dashboard</div>
+        <div class="header-right">
+          <div id="backend-status" class="status-chip status-connecting">
+            <span class="status-dot"></span>
+            <span id="status-label">Connecting...</span>
+          </div>
+          <div class="header-avatar">A</div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div id="page-content"></div>
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="api.js"></script>
+  <script src="pages/dashboard.js"></script>
+  <script src="pages/upload.js"></script>
+  <script src="pages/eda.js"></script>
+  <script src="pages/quality.js"></script>
+  <script src="pages/visualizations.js"></script>
+  <script src="pages/insights.js"></script>
+  <script src="pages/reports.js"></script>
+  <script src="pages/chat.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
